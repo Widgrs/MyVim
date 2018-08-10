@@ -1,0 +1,28 @@
+[alias]
+	st = status
+	co = checkout
+	ci = commit
+	br = branch
+	rb = rebase
+	pr = remote prune
+	l0 = log --color --graph --decorate --pretty=oneline --abbrev-commit --date-order
+	l1 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	l2 = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[color]
+	ui = true
+[user]
+	name = Widgrs
+	email = jichliu@163.com
+[diff]
+	tool = vimdiff
+
+[url "git@gitlab.xunlei.cn:"]
+    insteadOf = https://gitlab.xunlei.cn/
+[url "git@:wx-gitlab.xunlei.cn"]
+    insteadOf = https://wx-gitlab.xunlei.cn/
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
