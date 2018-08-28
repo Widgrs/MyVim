@@ -1,8 +1,8 @@
-" 更新时间：2018-04-30 01:09:27
+" 更新时间：2018-08-28 16:59
 
 " 定义快捷键的前缀，即 <Leader>
 " let mapleader=";"
-let mapleader = "\<Space>"
+let mapleader = "'"
 " 让配置变更立即生效
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
@@ -289,7 +289,7 @@ let s:vim_tags = expand('~/.cache/tags')
 let g:gutentags_cache_dir = s:vim_tags
 
 " 配置 ctags 的参数
-let g:gutentags_ctags_executable = '/home/ubuntu/Program/exctags/bin/exctags'
+let g:gutentags_ctags_executable = '/home/dylan/Program/exctags/bin/exctags'
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+l+p+x+c+d+e+f+g+m+n+s+t+u+v']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+l+p+x+c+d+e+f+g+m+n+s+t+u+v']
@@ -307,7 +307,7 @@ endif
 " >>>>>>>>>>>>>>>>>>>>
 " LeaderF 插件设置
 
-let g:Lf_Ctags = "/home/ubuntu/Program/exctags/bin/exctags"
+let g:Lf_Ctags = "/home/dylan/Program/exctags/bin/exctags"
 " 指定 LeaderF 使用的 Python 版本
 let g:Lf_PythonVersion = 3
 " 搜索文件
@@ -326,13 +326,13 @@ let g:Lf_CacheDirectory = expand('~/.vim/cache')
 let g:Lf_StlColorscheme = 'powerline'
 let g:Lf_StlSeparator = { 'left': '►', 'right': '◄', 'font': '' }
 " 如果目录中包含以下文件夹之一则为根目录
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_RootMarkers = ['.git', '.gitignore', '.root', '.svn', '.project']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 
 " 指定索引时想要忽略的文件和文件夹
 let g:Lf_WildIgnore = {
     \ 'dir': ['.svn','.git','.hg'],
-    \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+    \ 'file': ['*.log', '*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
     \ }
 
 " 指定是否在搜索结果中显示预览

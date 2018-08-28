@@ -24,6 +24,7 @@ permalink:
 ```shell
 sudo apt update
 sudo apt install openssh-server
+# 安装完openssh-server之后就可以使用XShell等工具连上Ubuntu进行操作了
 sudo apt install git
 # 配置Git
 git config --global user.name "Widgrs"
@@ -33,7 +34,7 @@ git config --global -l
 # 查看是否有SSH Keys
 ls -al ~/.ssh
 # 如果没有id_rsa文件，则生成一对密钥对
-# 如果自己有常用的密钥对，则可以略过下一步，直接将私钥拷贝到~/.ssh目录下再更改文件权限即可
+# 如果自己有常用的密钥对，则可以略过这一步，直接将私钥拷贝到~/.ssh目录下再更改文件权限即可
 ssh-keygen -t rsa -b 4096 -C "Widgrs's Key"
 # 更改id_rsa文件权限，如果提示权限太高则将权限改为600
 chmod 644 id_rsa
@@ -80,7 +81,7 @@ make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
 # 也可以使用传统方式安装，命令为 sudo make install
 sudo checkinstall
 
-# 将Vim设置为默认编辑器
+# 将Vim设置为默认编辑器（可选）
 sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
 sudo update-alternatives --set editor /usr/local/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
@@ -141,7 +142,7 @@ cp -r clang+llvm-6.0.1-x86_64-linux-gnu-ubuntu-16.04/* ~/Program/llvm
 cd ~/Download/LLVM+Clang
 mkdir build_tmp
 cd build_tmp
-# 如果想clang/clang++自动使用libc++库，那么在编译clang时就需要指定DCLANG_DEFAULT_CXX_STDLIB参数值  为libc++，否则在链接的时候自动使用gcc/g++的libstdc++库
+# 如果想clang/clang++自动使用libc++库，那么在编译clang时就需要指定DCLANG_DEFAULT_CXX_STDLIB参数值为libc++，否则在链接的时候自动使用gcc/g++的libstdc++库
 # 默认安装位置为 /usr/local，也可以使用 DCMAKE_INSTALL_PREFIX 参数指定安装位置
 cmake -G "Unix Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCLANG_DEFAULT_CXX_STDLIB=libc++ -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX=/home/ubuntu/Program/llvm ../llvm
 # 使用四核编译加快编译速度
@@ -168,7 +169,7 @@ source .bashrc
 将clang和clang++设置为系统默认的编译器（可选）。
 
 ```shell
-# 将clang和clang++设置为默认编辑器
+# 将clang和clang++设置为默认编译器（可选）
 sudo update-alternatives --install /usr/bin/cc cc /home/ubuntu/Program/llvm/bin/clang 1
 sudo update-alternatives --set cc /home/ubuntu/Program/llvm/bin/clang
 sudo update-alternatives --install /usr/bin/c++ c++ /home/ubuntu/Program/llvm/bin/clang++ 1
@@ -235,7 +236,7 @@ cp -r go/* ~/Program/go
 # 执行 go install project_name 即可编译项目并将生成的可执行文件拷贝到 bin 目录下
 # 将 $GOPATH/bin 目录也添加进系统路径，这样就可以直接执行go生成的可执行文件
 mkdir -p ~/Code/Go
-export GOROOT=/usr/local/go
+export GOROOT=$HOME/Program/go
 export GOPATH=$HOME/Code/Go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 ```
@@ -272,8 +273,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 git clone git@github.com:universal-ctags/ctags.git ~/Download/ctags
 cd ~/Download/ctags
 # 如果提示 autoreconf: not found 需要安装 autoconf
-# sudo apt install autoconf
-# sudo apt install pkg-config
+# 该命令会安装 autoconf automake autotools-dev m4 pkg-config 五个软件
+# sudo apt install autoconf pkg-config
 ./autogen.sh
 # 为了避免ctags名称冲突，安装时将其名称设为exctags
 ./configure --program-prefix=ex --prefix=/home/ubuntu/Program/exctags
